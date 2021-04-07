@@ -1,0 +1,351 @@
+{% extends "header.html" %}
+{% block body %}
+  <div class="wrapper ">
+    <div class="sidebar">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+      -->
+      <div class="logo">
+        <a href="" class="simple-text logo-mini">
+          <div class="dash-logo">
+            <div class="img">
+            </div>
+          </div>
+        </a>
+        <a href="" class="simple-text logo-normal">
+          The Fourth Eye
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li id="dashboard" class="active">
+            <a href="{{url_for('dashboard')}}">
+              <i class="now-ui-icons design_app"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li id="live_feed">
+            <a href="{{url_for('live_feed')}}">
+              <i class="now-ui-icons media-2_sound-wave"></i>
+              <p>Live Feed</p>
+            </a>
+          </li>
+          <li id="switch_control" class=" ">
+            <a href="{{url_for('switch_control')}}">
+              <i class="now-ui-icons gestures_tap-01"></i>
+              <p>Switch Control(Extended)</p>
+            </a>
+          </li>
+          <li id="profile" class=" ">
+            <a href="{{url_for('profile')}}">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li id="people">
+            <a href="{{url_for('people')}}">
+              <i class="now-ui-icons business_badge"></i>
+              <p>People</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent  bg-primary  navbar-absolute">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#">DASHBOARD</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('live_feed')}}">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Live feed</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{url_for('profile')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Profile</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/profile">Profile</a>
+                  <a class="dropdown-item" href="/logout">Log Out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-md">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class=" col-md-9 col-sm-12">
+            <div class="row">
+              <div class="r1 col-sm-6 col-md-4 col-lg-4">
+                <div onclick="window.location.href = '{{url_for('live_feed')}}';" class="card card-chart cam-card">
+                  <div class="card-header">
+                    <h4 class="card-title">Live feed</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <div class="dash-box">
+                        <div style="margin:auto;">
+                          <i class="fas fa-video" aria-hidden="true"></i>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="r1 col-sm-6 col-md-4 col-lg-4">
+                <div class="card card-chart switch-card" onclick="window.location.href = '{{url_for('switch_control')}}';">
+                  <div class="card-header">
+                    <h4 class="card-title">Switch Control</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-area">
+                     <div style="text-align: center;font-size:50px;">
+                      <i class="now-ui-icons gestures_tap-01"></i>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="r1 col-sm-6 col-md-4 col-lg-4">
+                <div class="card card-chart weather-card">
+                  <div class="card-header">
+                    <h4 class="card-title">Weather</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-area">
+                        <div class="weather"> 
+                        <div class="row" style="margin: 0; padding: 0; "> 
+                          <div class="col-7"> 
+                            <div style="font-size:20px"> 
+                              <span id="temp">13.61</span> 
+                              ° C 
+                            </div>
+                          </div>
+                          <div class="col-5" style="text-align: center; "> 
+                            <img id="weath_ico" src="http://openweathermap.org/img/w/01n.png">
+                          </div>
+                        </div>
+                        <div class="row row-desc" style="margin-top: -16px; "> 
+                          <div class="col">
+                            <small id="desc">Clear</small>
+                          </div> 
+                        </div> 
+                        <div class="row">
+                          <div class="col">
+                            <p>
+                              <i class="now-ui-icons arrows-1_minimal-down"></i>
+                              <span id="min_temp">13.61</span>°C
+                            </p> 
+                          </div> 
+                          <div class="col">
+                            <p> 
+                              <i class="now-ui-icons arrows-1_minimal-up" s=""></i>
+                              <span id="max_temp">13.61</span>°C 
+                            </p> 
+                          </div>
+                        </div> 
+                        <div class="row">
+                          <div class="col">
+                            <span>Bilaspur</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" col-sm-6 col-md-12 col-lg-12">
+                <div class="card card-tasks">
+                  <div class="card-header ">
+                    <h4 class="card-title">Notifications (Extended)</h4>
+                  </div>
+                  <div class="card-body ">
+                    <div class="table-full-width table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-left">(Some person detected. )We'll extend it in future.</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-left">( Rohn is at the door. ) We'll extend it in future.</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-left">We'll extend it in future.</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12">
+            <div class="row">
+              <div class=" col-md-12">
+                <div class="card people">
+                  <div class="card-header">
+                    <h4 class="card-title">People </h4>
+                  </div>
+                  <div class="card-body">
+                    {% if peopleName %}
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <tr style="background: none; cursor: default;">
+                            <th>
+                              Name
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for r in peopleName %}
+                          <tr onclick="window.location.href = '/profile/{{ r }}';">
+                            <td>
+                              {{ r }}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    {% else %}
+                      No people added
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      <footer class="footer">
+        <div class="container">
+          <nav>
+            <ul>
+              <li>
+                <a href="/">
+                  The Fourth Eye
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  GEC Bilaspur
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright" id="copyright">
+            &copy;
+            <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>
+            <!-- <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script> -->
+            , Designed by
+            <a href="#" target="_blank">Abhishek</a> &amp; <a href="https://www.linkedin.com/in/priyanshi-singh/" target="_blank">Priyanshi</a>. Coded by
+            <a href="https://www.linkedin.com/in/hemant-lader" target="_blank">Hemant</a> &amp; <a href="#" target="_blank">Bhawna</a>.
+          </div>
+        </div>
+      </footer>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+ <!--  <script>
+    function getWeather(){
+        $.getJSON('http://api.openweathermap.org/data/2.5/weather?appid=474d6079edbd4f241c4fa9af32528d3f&q=Bilaspur', function(json, textStatus) {
+            /*optional stuff to do after success */
+            console.log(json);
+            current_temp =(json['main']['temp'] - 273.15 ).toFixed(2);
+            min_temp=(json['main']['temp_min'] - 273.15 ).toFixed(2);
+            max_temp=(json['main']['temp_max'] - 273.15 ).toFixed(2);
+            desc=json['weather'][0]['main'];
+            icon=json['weather'][0]['icon'];
+            icon = "http://openweathermap.org/img/w/"+icon+".png";
+            console.log(textStatus);
+            $('#temp').text(current_temp);
+            $('#desc').text(desc);
+            $('#max_temp').text(max_temp);
+            $('#min_temp').text(min_temp);
+            $('#weath_ico').attr("src",icon);
+            return textStatus;
+        });  
+      }
+
+    $(function(){
+      getWeather();
+    });
+  </script> -->
+{% endblock %}

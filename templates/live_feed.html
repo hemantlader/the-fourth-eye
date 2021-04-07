@@ -1,0 +1,192 @@
+{% extends "header.html" %}
+{% block body %}
+  <div class="wrapper ">
+    <div class="sidebar">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+      -->
+      <div class="logo">
+        <a href="" class="simple-text logo-mini">
+          <div class="dash-logo">
+            <div class="img">
+            </div>
+          </div>
+        </a>
+        <a href="" class="simple-text logo-normal">
+          The Fourth Eye
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li id="dashboard">
+            <a href="{{url_for('dashboard')}}">
+              <i class="now-ui-icons design_app"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li id="live_feed"  class="active">
+            <a href="{{url_for('live_feed')}}">
+              <i class="now-ui-icons media-2_sound-wave"></i>
+              <p>Live Feed</p>
+            </a>
+          </li>
+          <li id="switch_control" class=" ">
+            <a href="{{url_for('switch_control')}}">
+              <i class="now-ui-icons gestures_tap-01"></i>
+              <p>Switch Control(Extended)</p>
+            </a>
+          </li>
+          <li id="profile" class=" ">
+            <a href="{{url_for('profile')}}">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li id="people">
+            <a href="{{url_for('people')}}">
+              <i class="now-ui-icons business_badge"></i>
+              <p>People</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent  bg-primary  navbar-absolute">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="">LIVE FEED</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/live_feed">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Live feed</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Profile</span>
+                  </p>
+                </a>
+                
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/profile">Profile</a>
+                  <a class="dropdown-item" href="/logout">Log Out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-md">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class=" col-md-12 col-lg-10 offset-lg-1 col-sm-12">
+            <div class="row">
+              <div class="video">
+                <div class="feed_content">
+                  <div class="vid_content">
+                    <img class="video_img" src="{{ url_for('video_feed') }}">
+                  </div>
+                  <span class="footage_time">10:27 am , 10 Dec 2018</span>
+                  <div class="feed_logo">
+                    <div class="row">
+                      <div class="col">
+                        <div class="feed_logo_img"></div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <span>The Fourth Eye</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          
+        </div>
+        <footer class="footer">
+          <div class="container">
+            <nav>
+              <ul>
+                <li>
+                  <a href="">
+                    The Fourth Eye
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    GEC Bilaspur
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright" id="copyright">
+              &copy;
+              <script>
+                document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+              </script>
+              , Designed by
+              <a href="#" target="_blank">Abhishek</a> &amp; <a href="https://www.linkedin.com/in/priyanshi-singh/" target="_blank">Priyanshi</a>. Coded by
+              <a href="https://www.linkedin.com/in/hemant-lader" target="_blank">Hemant</a> &amp; <a href="#" target="_blank">Bhawna</a>.
+            </div>
+          </div>
+        </footer>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      function update(){
+        var date = new Date();
+        var ampm = date.getHours() < 12 ? 'am': 'pm';
+        var hours = date.getHours() == 0 ? 12 : date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+        var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        var seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+        
+        var month = months[date.getMonth()];
+        var day = date.getDate();
+        var year = date.getFullYear();
+        
+        var dateString = hours+':'+minutes+':'+seconds+' '+ampm+' | '+ month + ' ' + day + ', ' + year;
+        $('.footage_time').text(dateString);
+      } 
+      $(function(){
+        update();
+        window.setInterval(update, 1000);  
+      });
+    </script>
+  {% endblock %}

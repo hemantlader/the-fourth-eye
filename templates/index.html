@@ -1,0 +1,224 @@
+{% extends "header.html" %}
+{% block body %}
+  <!--Sign In  Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content font">
+        <div class="modal-header font">
+          <h5 class="modal-title font" id="exampleModalLongTitle">Sign In</h5>
+          <div style="position: absolute; display: flex; top: 73px; left: 5%; text-align:  center; width: 90%; padding: 0; ">
+            <small id="signInMsg" class="formMsg">Form message.</small> 
+          </div> 
+          <button id="signinCloser" type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+            <span class="fas fa-times" aria-hidden="true"></span> 
+          </button> 
+        </div>
+        <div class="modal-body">
+          <div class="myFormBox font">
+                <form method="POST" action="/login" id="signInForm" name="signInForm" autocomplete="off" onsubmit="onSubmitForm(this);">
+                  <div>
+                    <input id="email" type="email" name="email" required="" onkeyup="checkSignInEmail(this);" class="">
+                    <label>Email</label>
+                    <p id="emailMsg" class="msg"></p>
+                    <span id="emailMsgIco" class="msgIcon fas "></span>
+                  </div>
+                  <!-- <div>
+                    <input id="InUsername" type="name" name="signInUsername" required="" onkeyup="checkUsername(this);" class="" autocomplete="off">
+                    <label>Username</label>
+                    <p id="usernameMsg" class="msg"></p>
+                    <span id="usernameMsgIco" class="msgIcon fas "></span>
+                  </div> -->
+                  <div>
+                    <input id="password" type="password" name="password" required="" onkeyup="checkSignInPassword(this);">
+                    <label>Password</label>
+                    <p id="passMsg" class="msg"></p>
+                    <span id="passwordIco" class="msgIcon fas fa-eye" onclick="showSignInPassword(this)"></span>
+                  </div><!-- 
+                  <div class="chkDiv">
+                    <label class="container">Remember me
+                      <input type="checkbox" name="remember">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div> -->
+                  <div>
+                  <input id="inSubmit" class="btn btn-primary  btn-default btn-block btn-round" type="submit" name="submit" value="Sign In">
+                  <span class="signInIco fas fa-arrow-right"></span>
+                  </div>
+                </form>
+                <div class="text-center" style="display: none;">
+                  <small style="margin: 0; "><a class="forgetLink faded" href="#">Forget Password ?</a></small>
+                </div>
+                <!-- 
+                  <div style="display: flex;position: relative;">
+                        <hr width="45%" style="margin-left: 0;border-color: #343a40;">
+                        <span style="    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);">OR</span>
+                        <hr width="45%" style="margin-right: 0;border-color: #343a40;">
+                      </div>
+                      <div class="socialLinks" style="
+                        margin: 10px auto;
+                    ">
+                            <div style="
+                          position:  relative;
+                          margin: 0 auto 20px auto;
+                      ">
+                              <button class="btn btn-social btn-fb btn-round" style="
+                          position: inherit;
+                          top: 0%;
+                          left: 0%;
+                      ">
+                                <span></span>
+                              </button>
+                              <button class="btn btn-social btn-g btn-round" style="
+                          position: absolute;
+                          top: 0%;
+                          right: 0%;
+                      ">
+                                <span></span>Google
+                              </button>
+                              
+                            </div>
+                            
+                          </div> 
+                -->
+              </div>
+      </div>
+        <div class="modal-footer">
+          <div style="margin: auto; font-size: 0.75em; text-align: center; color: white; ">
+            Don't have an account ? <a class="createLink" href="#" onclick="upSwitch();">Create an account</a> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </div>
+
+  <!--Sign Up  Modal -->
+  <div class="modal fade" id="signUpModalCenter" tabindex="-1" role="dialog" aria-labelledby="signUpModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content font">
+        <div class="modal-header font">
+          <h5 class="modal-title font" id="signUpModalLongTitle">Sign Up</h5> 
+          <div style="position: absolute; display: flex; top: 73px; left: 5%; text-align:  center; width: 90%; padding: 0; "> 
+            <small id="signUpMsg" class="formMsg">Form message.</small> 
+          </div> 
+          <button type="button" id="signupCloser" class="close" data-dismiss="modal" aria-label="Close"> 
+            <span class="fas fa-times" aria-hidden="true"></span> 
+          </button> 
+        </div> 
+        <div class="modal-body">
+          <div class="myFormBox font"> 
+            <form method="POST" action="/signup" id="signUpForm" autocomplete="off" > 
+              <div> 
+                <input id="name" type="name" name="signUpName" required="" onkeyup="checkName(this);" class="" autocomplete="off"> <label>Name</label> 
+                <p id="nameMsg" class="msg"></p> 
+                <span id="nameMsgIco" class="msgIcon fas "></span> 
+              </div> 
+              <div> 
+              <input id="signUpemail" type="email" name="registerEmail" required="" onkeyup="checkSignUpEmail(this);" class="" autocomplete="off"> 
+              <label>Email</label> <p id="signUpemailMsg" class="msg"></p><span id="signUpemailMsgIco" class="msgIcon fas "></span> </div> 
+              <!-- <div> 
+                <input id="UpUsername" type="text" name="registerUsername" required="" onkeyup="checkUpUsername(this);" class="" autocomplete="false"> 
+                <label>Username</label> 
+                <p id="signUpUsernameMsg" class="msg"></p> 
+                <span id="signUpUsernameMsgIco" class="msgIcon fas "></span> 
+              </div> --> 
+              <div> 
+                <input id="signUppassword" type="password" name="registerPassword" required="" onkeyup="checkSignUpPassword(this);"> 
+                <label>Password</label> 
+                <p id="passMsg" class="msg"></p> 
+                <span id="signUpPasswordIco" class="msgIcon fas fa-eye" onclick="showSignUpPassword(this)"></span> 
+              </div> 
+              <div> 
+                <input id="upSubmit" class="btn btn-primary  btn-default btn-block btn-round" type="submit" name="submit" value="REGISTRATION"> <span class="signInIco fas fa-arrow-right"></span> 
+              </div> 
+            </form> 
+          </div> 
+        </div> 
+        <div class="modal-footer"> 
+          <div style="margin: auto; font-size: 0.75em; text-align: center; color: white; ">Already registered ? <a class="createLink" href="#" onclick="inSwitch();">Sign in here</a> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </div>
+
+  <div class="wrapper ">
+    <div class="mainPage" >
+      <div class="logo">
+        <a href="/" class="simple-text logo-normal">
+          The Fourth Eye
+        </a>
+      </div>
+      <div class="row board-row">
+        <div class="col-12 col-sm-8 col-md-6 offset-sm-2 offset-md-3 board">
+          <div class="row">
+            <div class="col">
+              <div class="brand-img">
+                <div class="logo_img">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row board">
+            <div class="col">
+              <div class="" id="collapsibleNavbar">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <a class="nav-link btn btn-primary  btn-default btn-block btn-round"  data-toggle="modal" data-target="#exampleModalCenter">Sign In</a>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <a class="nav-link btn btn-primary  btn-default btn-block btn-round"   data-toggle="modal" data-target="#signUpModalCenter">Sign Up</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+          
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <nav>
+            <ul>
+              <li>
+                <a href="">
+                  The Fourth Eye
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  GEC Bilaspur
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright" id="copyright">
+            &copy;
+            <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>
+            , Designed by
+            <a href="#" target="_blank">Abhishek</a> &amp; <a href="https://www.linkedin.com/in/priyanshi-singh/" target="_blank">Priyanshi</a>. Coded by
+            <a href="https://www.linkedin.com/in/hemant-lader" target="_blank">Hemant</a> &amp; <a href="#" target="_blank">Bhawna</a>.
+          </div>
+        </div>
+      </footer>
+    </div>      
+  </div>
+  <!--   Core JS Files   -->
+  <script src="{{url_for('static',filename='assets/js/core/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/core/popper.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/core/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+  <!-- Chart JS -->
+  <script src="{{url_for('static',filename='assets/js/plugins/chartjs.min.js')}}"></script>
+  <!--  Notifications Plugin    -->
+  <script src="{{url_for('static',filename='assets/js/plugins/bootstrap-notify.js')}}"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{url_for('static',filename='assets/js/now-ui-dashboard.min.js')}}?v=1.2.0" type="text/javascript"></script>
+{% endblock %}
+{% block scripts %}
+  <script src="{{url_for('static',filename='assets/js/validater.js')}}"></script>
+{% endblock %}
